@@ -66,4 +66,18 @@ class Bounty
     db.close()
   end
 
+  #################### EXTENSIONS ######################
+
+  def Bounty.find_by_name(search)
+    db = PG.connect( {dbname: 'bounty_hunter', host: 'localhost'})
+    sql = "SELECT * FROM bounties WHERE name = $1"
+    values = [search]
+    db.prepare("find_by_name", sql)
+    result = db.exec_prepared("find_by_name", values)
+    db.close()
+    return result.map { |bounty| Bounty.new(bounty) }
+    # Could not get the actual details without Map
+    # #<PG::Result:0x007feca8346ec0 status=PGRES_TUPLES_OK ntuples=2 nfields=5 cmd_tuples=2>
+  end
+
 end
