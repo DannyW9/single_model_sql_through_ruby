@@ -75,9 +75,19 @@ class Bounty
     db.prepare("find_by_name", sql)
     result = db.exec_prepared("find_by_name", values)
     db.close()
-    return result.map { |bounty| Bounty.new(bounty) }
+    return result[0]#.map { |bounty| Bounty.new(bounty) }
     # Could not get the actual details without Map
     # #<PG::Result:0x007feca8346ec0 status=PGRES_TUPLES_OK ntuples=2 nfields=5 cmd_tuples=2>
   end
+
+  def Bounty.find_by_id(id)
+      db = PG.connect( {dbname: 'bounty_hunter', host: 'localhost'})
+      sql = "SELECT * FROM bounties WHERE id = $1"
+      values = [id]
+      db.prepare("find_by_id", sql)
+      result = db.exec_prepared("find_by_id", values)
+      db.close()
+      return result[0]#.map { |bounty| Bounty.new(bounty) }
+    end
 
 end

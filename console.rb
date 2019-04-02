@@ -16,14 +16,17 @@ bounty2 = Bounty.new({'name' => 'Chewbacca',
                       })
 
 bounty2.save()
-
 result = Bounty.find_by_name('Han Solo')
+result2 = Bounty.find_by_id(2)
+
 binding.pry
 bounty1.cashed_in = "true"
 bounty1.update()
 
 
 result = Bounty.find_by_name('Han Solo')
+
+binding.pry
 
 
 # Bounty.delete_all()
