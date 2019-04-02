@@ -49,5 +49,14 @@ class Bounty
     db.close()
   end
 
+  def Bounty.delete_all()
+    db = PG.connect( {dbname: 'bounty_hunter', host: 'localhost'})
+    sql = "DELETE FROM bounties"
+    db.prepare("delete_all", sql)
+    db.exec_prepared("delete_all")
+    db.close()
+  end
+
+
 
 end
