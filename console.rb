@@ -20,4 +20,5 @@ bounty2.save()
 bounty1.cashed_in = "true"
 bounty1.update()
 
-Bounty.delete_all()
+# Bounty.delete_all()
+bounty2.delete()
