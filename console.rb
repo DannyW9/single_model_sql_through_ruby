@@ -4,7 +4,7 @@ require_relative('models/bounty.rb')
 bounty1 = Bounty.new({'name' => 'Han Solo',
                       'species' => 'Human',
                       'bounty_value' => '100000',
-                      'cashed_in' => "false"
+                      'cashed_in' => 'false'
                     })
 
 bounty1.save()
@@ -24,9 +24,9 @@ bounty1.cashed_in = "true"
 bounty1.update()
 
 
-result = Bounty.find_by_name('Han Solo')
+# result = Bounty.find_by_name('Han Solo')
 
-binding.pry
+
 
 
 # Bounty.delete_all()

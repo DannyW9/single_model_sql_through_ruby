@@ -75,7 +75,12 @@ class Bounty
     db.prepare("find_by_name", sql)
     result = db.exec_prepared("find_by_name", values)
     db.close()
-    return result[0]#.map { |bounty| Bounty.new(bounty) }
+    if result == []
+      return nil
+    else
+      return Bounty.new(result[0])
+    end
+    #.map { |bounty| Bounty.new(bounty) }
     # Could not get the actual details without Map
     # #<PG::Result:0x007feca8346ec0 status=PGRES_TUPLES_OK ntuples=2 nfields=5 cmd_tuples=2>
   end
@@ -87,7 +92,7 @@ class Bounty
       db.prepare("find_by_id", sql)
       result = db.exec_prepared("find_by_id", values)
       db.close()
-      return result[0]#.map { |bounty| Bounty.new(bounty) }
+      return Bounty.new(result[0])#.map { |bounty| Bounty.new(bounty) }
     end
 
 end
